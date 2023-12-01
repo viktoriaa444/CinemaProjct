@@ -1,0 +1,54 @@
+﻿<Window x:Class="CinemaProject.Windows.SessionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CinemaProject.Windows"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Сеансы" Height="650" Width="800" MaxWidth="800" MinWidth="700"  MaxHeight="800" MinHeight="650"
+        WindowStartupLocation="CenterScreen" IsVisibleChanged="Window_IsVisibleChanged">
+
+    <Grid Margin="5,5,5,5">
+        <Image Stretch="Uniform" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/Image/1580222994_unnamed.jpg"/>
+        <TextBlock HorizontalAlignment="Left" Margin="123,19,0,0" TextWrapping="Wrap" Text="Кинотеатр 6 звезд" VerticalAlignment="Top" FontFamily="Arial" Height="65" Width="128" FontSize="23" FontWeight="Bold" Foreground="#698AFF" TextDecorations="Underline"/>
+
+        <Button  Style="{StaticResource MaterialDesignFlatButton}" FontFamily="Arial" Content="В меню" FontSize="15" Margin="395,52,10,490" Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="Button_Click_Main">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <!--<StackPanel Margin="158,146,158,0">
+            <ComboBox Name="ComboBox_Search" SelectionChanged="ComboBox_Search_SelectionChanged" DisplayMemberPath="NameMovie" materialDesign:HintAssist.Hint="Поиск по названиею фильма" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+        </StackPanel>-->
+        <Button Content="Добавить" Margin="480,456,10,86" x:Name="AddBtn"  Click="Button_Click_Add" Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontFamily="Arial"/>
+        <Button Content="Обновить" Margin="480,517,5,25" Click="Button_Click_Update"  Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontFamily="Arial"/>
+        <Button Content="Удалить" Margin="480,391,10,151" x:Name="DeleteBtn" Click="Button_Click_Delete" Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontFamily="Arial"/>
+        <Button Content="Выгрузить" Margin="480,322,10,220" x:Name="ExBtn"  Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontFamily="Arial"/>
+
+        <DataGrid x:Name="SessionGrid" Margin="0,211,315,0" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <materialDesign:DataGridTextColumn Binding="{Binding Cost}" CanUserReorder="False" Header="Цена"/>
+                <materialDesign:DataGridTextColumn Binding="{Binding Session_start_time }" CanUserReorder="False" Header="Время начала сеанса"/>
+                <materialDesign:DataGridTextColumn Binding="{Binding Session_end_time}" CanUserReorder="False" Header="Время окончания сеанса"/>
+                <materialDesign:DataGridTextColumn Binding="{Binding Movie.NameMovie }" CanUserReorder="False" Header="Название фильма"/>
+                <materialDesign:DataGridTextColumn Binding="{Binding Movie.Rating }" CanUserReorder="False" Header="Рейтинг фильма"/>
+                <materialDesign:DataGridTextColumn Binding="{Binding Hall.IdHall }" CanUserReorder="False" Header="Номер зала"/>
+                <materialDesign:DataGridTextColumn Binding="{Binding Hall.NumberOfSeats }" CanUserReorder="False" Header="Вместительность зала"/>
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button FontFamily="Arial" Content="Редактировать" Name="editButton" FontSize="15" Click="Button_Click_Edit">
+                                <Button.Style>
+                                    <StaticResource ResourceKey="MaterialDesignFlatButton"/>
+                                </Button.Style>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

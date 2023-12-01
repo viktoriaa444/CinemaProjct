@@ -1,0 +1,24 @@
+﻿<Window x:Class="CinemaProject.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CinemaProject.Windows"
+        mc:Ignorable="d"
+        Title="Главное меню" Height="650" Width="800" MaxWidth="1000" MinWidth="700"  MaxHeight="750" MinHeight="650"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="5,5,5,5">
+        <Image Stretch="Uniform" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/Image/1580222994_unnamed.jpg"/>
+        <TextBlock HorizontalAlignment="Left" Margin="123,19,0,0" TextWrapping="Wrap" Text="Кинотеатр 6 звезд" VerticalAlignment="Top" Height="65" Width="128" FontSize="23" FontWeight="Bold" Foreground="#698AFF" TextDecorations="Underline" FontFamily="Arial"/>
+
+        <StackPanel Margin="151,182,155,0" >
+            <Button Content="Сотрудники" x:Name="ButtonEmployee" Margin="15" Cursor="Hand" Click="Button_Click_Employee" FontFamily="Arial" FontSize="16"/>
+            <Button Content="Клиенты" Margin="15" x:Name="ButtonClient" Cursor="Hand" Click="Button_Click_Client" FontFamily="Arial" FontSize="16"/>
+            <Button Content="Сеансы" Margin="15" Cursor="Hand" Click="Button_Click_Session" FontFamily="Arial" FontSize="16"/>
+            <Button Content="Фильмы" Margin="15" x:Name="ButtonMovie" Cursor="Hand" Click="Button_Click_Movie" FontFamily="Arial" FontSize="16"/>
+            <Button Content="Выйти"  Margin="15"   Cursor="Hand" Click="Button_Click_Exit" FontFamily="Arial" FontSize="16"/>
+        </StackPanel>
+        <TextBlock x:Name="TextBlock" HorizontalAlignment="Left" Margin="10,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="45" Width="296" />
+    </Grid>
+</Window>

@@ -1,0 +1,55 @@
+﻿<Window x:Class="CinemaProject.Windows.MovieWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CinemaProject.Windows"
+       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Фильмы" Height="650" Width="800" MaxWidth="800" MinWidth="700"  MaxHeight="800" MinHeight="650"
+        WindowStartupLocation="CenterScreen" IsVisibleChanged="Window_IsVisibleChanged">
+    <Grid Margin="5,5,5,5">
+        <Image Stretch="Uniform" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/Image/1580222994_unnamed.jpg"/>
+        <TextBlock HorizontalAlignment="Left" Margin="123,19,0,0" FontFamily="Arial" TextWrapping="Wrap" Text="Кинотеатр 6 звезд" VerticalAlignment="Top" Height="65" Width="128" FontSize="23" FontWeight="Bold" Foreground="#698AFF" TextDecorations="Underline"/>
+
+        <Button FontFamily="Arial" Content="В меню" FontSize="15" Margin="395,52,10,490" Cursor="Hand" Click="Button_Click_Main">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <StaticResource ResourceKey="MaterialDesignFlatButton"/>
+            </Button.Style>
+        </Button>
+        <StackPanel Margin="0,-10,0,10">
+            <TextBox Margin="187,146,188,430" materialDesign:HintAssist.Hint="Поиск фильмов по названию" TextChanged="TextBox_TextChanged" Name ="TextBox_Search" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+        </StackPanel>
+        <Button Content="Добавить" Margin="480,456,10,86" Click="Button_Click_Add" FontFamily="Arial" Cursor="Hand"/>
+        <Button Content="Обновить" Margin="480,517,5,25"  FontFamily="Arial" Click="Button_Click_Update" Cursor="Hand"/>
+        <Button Content="Удалить" Margin="480,391,10,151" Click="Button_Click_Delete" FontFamily="Arial" Cursor="Hand"/>
+        <Button Content="Выгрузить" Margin="480,322,10,220"  FontFamily="Arial" Cursor="Hand"/>
+
+        <DataGrid x:Name="MovieGrid" Margin="0,211,315,0" AutoGenerateColumns="False" IsReadOnly="True">
+
+            <DataGrid.Columns>
+                <materialDesign:DataGridTextColumn Binding="{Binding NameMovie}" CanUserReorder="False" Header="Название фильма"/>
+                <materialDesign:DataGridTextColumn Binding="{Binding Rating }" CanUserReorder="False" Header="Рейтинг"/>
+
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button FontFamily="Arial" Content="Редактировать" Name="editButton" FontSize="15" Click="Button_Click_Edit">
+                                <Button.Style>
+                                    <StaticResource ResourceKey="MaterialDesignFlatButton"/>
+                                </Button.Style>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        
+    </Grid>
+</Window>

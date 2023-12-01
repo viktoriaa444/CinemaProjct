@@ -1,0 +1,35 @@
+﻿<Window x:Class="CinemaProject.Windows.CardSession"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CinemaProject.Windows"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Карточка" Height="450" Width="800" MaxWidth="1000" MinWidth="700"  MaxHeight="750" MinHeight="600"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Content="Добавление данных" HorizontalAlignment="Center" Margin="30" Style="{StaticResource MaterialDesignLabel}" FontSize="32" Foreground="#698AFF" FontWeight="Bold"/>
+        <StackPanel Margin="208,146,208,23"  >
+            <ComboBox x:Name="ComboBoxName" Padding="10" SelectedItem="{Binding Movie}" DisplayMemberPath="NameMovie" materialDesign:HintAssist.Hint="Название фильма" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+            <TextBox x:Name="TextBoxCost" Padding="10"  MaxLength="50" Text="{Binding Cost}"  materialDesign:HintAssist.Hint="Стоимость" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+            <ComboBox x:Name="ComboBoxHall" Padding="10" SelectedItem="{Binding Hall}" DisplayMemberPath="IdHall" materialDesign:HintAssist.Hint="Номер зала" IsEditable="False"  Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+            <TextBox x:Name="TextBoxStart" Padding="10" MaxLength="8" Text="{Binding Session_start_time}" materialDesign:HintAssist.Hint="Время начала сеанса" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+            <TextBox x:Name="TextBoxEnd" Padding="10"  MaxLength="8" Text="{Binding Session_end_time}" materialDesign:HintAssist.Hint="Время окончания сеанса" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+            <Button HorizontalAlignment="Left" FontFamily="Arial" Style="{StaticResource MaterialDesignFlatDarkBgButton}" FontSize="15" Margin="0 20 0 0" Background="#698AFF" Content="Сохранить" Width="383"  Click="Button_Save">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button  FontFamily="Arial" Style="{StaticResource MaterialDesignFlatButton}" Content="К разделу" FontSize="15" Margin="150 20 0 0" Click="Button_Back" Cursor="Hand" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

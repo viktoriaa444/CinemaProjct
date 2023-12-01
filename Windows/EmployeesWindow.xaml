@@ -1,0 +1,57 @@
+﻿<Window x:Class="CinemaProject.Windows.EmployeesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CinemaProject.Windows"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Сотрудники" Height="650" Width="800" MaxWidth="800" MinWidth="700"  MaxHeight="800" MinHeight="650"
+        WindowStartupLocation="CenterScreen" IsVisibleChanged="Window_IsVisibleChanged">
+
+    <Grid Margin="5,5,5,5">
+        <Image Stretch="Uniform" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/Image/1580222994_unnamed.jpg"/>
+        <TextBlock HorizontalAlignment="Left" Margin="123,19,0,0" FontFamily="Arial" TextWrapping="Wrap" Text="Кинотеатр 6 звезд" VerticalAlignment="Top" Height="65" Width="128" FontSize="23" FontWeight="Bold" Foreground="#698AFF" TextDecorations="Underline"/>
+
+        <Button  Style="{StaticResource MaterialDesignFlatButton}" FontFamily="Arial" Content="В меню" FontSize="15" Margin="395,52,10,490" Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="Button_Click_Main">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <StackPanel Margin="0,-10,0,10">
+        <TextBox Margin="187,146,188,430" materialDesign:HintAssist.Hint="Поиск работников по логину" TextChanged="TextBox_TextChanged" Name ="TextBox_Search" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+        </StackPanel>
+        <Button Content="Добавить"  Margin="480,456,10,86" Click="Button_Click_Add" FontFamily="Arial"  Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        <Button Content="Обновить" Click="Button_Click_Update" Margin="480,517,5,25" FontFamily="Arial"  Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        <Button Content="Удалить" Click="Button_Click_Delete" Margin="480,391,10,151" FontFamily="Arial"  Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        <Button Content="Выгрузить" Margin="480,322,10,220"  FontFamily="Arial" Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+       
+
+        <DataGrid x:Name="EmployeeGrid" Margin="0,211,315,0" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <materialDesign:DataGridTextColumn Binding="{Binding LastNameEmployee}" CanUserReorder="False" Header="Фамилия"/>
+                <materialDesign:DataGridTextColumn Binding="{Binding NameEmployee }" CanUserReorder="False" Header="Имя"/>
+                <materialDesign:DataGridTextColumn Binding="{Binding MiddleNameEmployee}" CanUserReorder="False" Header="Отчество"/>
+                <materialDesign:DataGridTextColumn Binding="{Binding DateOfBirth,StringFormat= \{0:dd.MM.yyyy\} }" CanUserReorder="False" Header="Дата рождения"/>
+                <materialDesign:DataGridTextColumn Binding="{Binding Floor }" CanUserReorder="False" Header="Пол"/>
+                <materialDesign:DataGridTextColumn Binding="{Binding Post.NamePost }" CanUserReorder="False" Header="Должность"/>
+                <materialDesign:DataGridTextColumn Binding="{Binding Login }" CanUserReorder="False" Header="Логин"/>
+                <materialDesign:DataGridTextColumn Binding="{Binding Password }" CanUserReorder="False" Header="Пороль"/>
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button FontFamily="Arial" Content="Редактировать" Name="editButton" FontSize="15" Click="Button_Click_Edit">
+                                <Button.Style>
+                                    <StaticResource ResourceKey="MaterialDesignFlatButton"/>
+                                </Button.Style>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>
