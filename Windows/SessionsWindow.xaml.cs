@@ -13,6 +13,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Office.Interop.Excel;
+using Window = System.Windows.Window;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace CinemaProject.Windows
 {
@@ -31,6 +34,7 @@ namespace CinemaProject.Windows
                 DeleteBtn.Visibility = Visibility.Collapsed;
                 ExBtn.Visibility = Visibility.Collapsed;
                 AddBtn.Visibility = Visibility.Collapsed;
+                SessionGrid.Columns[7].Visibility = Visibility.Collapsed;
             }
 
             //var allName = Context.GetContext().Movies.ToList();
@@ -90,7 +94,7 @@ namespace CinemaProject.Windows
         }
         private void Button_Click_Edit(object sender, RoutedEventArgs e)
         {
-            CardSession cardSession = new CardSession((sender as Button).DataContext as Session);
+            CardSession cardSession = new CardSession((sender as System.Windows.Controls.Button).DataContext as Session);
             cardSession.Show();
             Close();
         }
@@ -102,6 +106,36 @@ namespace CinemaProject.Windows
             //if (ComboBox_Search.SelectedIndex >0)
             //    comboBox = comboBox.Where(p => p.Movies.Contains(ComboBox_Search.SelectedItem as Movie)).ToList();
             //SessionGrid.ItemsSource = comboBox.OrderBy(p => p.Movie).ToList();
+        }
+
+        private void Button_Click_Upload(object sender, RoutedEventArgs e)
+        {
+            Excel.Application excel = new Excel.Application();
+            excel.Visible = true;  
+            Workbook workbook = excel.Workbooks.Add(System.Reflection.Missing.Value);
+            Worksheet sheet1 = (Worksheet)workbook.Sheets[1];
+
+            for (int j = 0; j < SessionGrid.Columns.Count; j++)  
+            {
+                Range myRange = (Range)sheet1.Cells[1, j + 1];
+                sheet1.Cells[1, j + 1].Font.Bold = true; 
+                sheet1.Columns[j + 1].ColumnWidth = 15; 
+                myRange.Value2 = SessionGrid.Columns[j].Header;
+            }
+            for (int i = 0; i < SessionGrid.Columns.Count; i++)
+            {  
+                for (int j = 0; j < SessionGrid.Items.Count; j++)
+                {
+                    TextBlock b = SessionGrid.Columns[i].GetCellContent(SessionGrid.Items[j]) as TextBlock;
+
+                    if (b == null)
+                        continue;
+
+                    Microsoft.Office.Interop.Excel.Range myRange = (Microsoft.Office.Interop.Excel.Range)sheet1.Cells[j + 2, i + 1];
+                    myRange.Value2 = b.Text;
+                }
+            }
+
         }
     }
 }

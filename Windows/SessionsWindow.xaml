@@ -26,7 +26,7 @@
         <Button Content="Добавить" Margin="480,456,10,86" x:Name="AddBtn"  Click="Button_Click_Add" Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontFamily="Arial"/>
         <Button Content="Обновить" Margin="480,517,5,25" Click="Button_Click_Update"  Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontFamily="Arial"/>
         <Button Content="Удалить" Margin="480,391,10,151" x:Name="DeleteBtn" Click="Button_Click_Delete" Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontFamily="Arial"/>
-        <Button Content="Выгрузить" Margin="480,322,10,220" x:Name="ExBtn"  Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontFamily="Arial"/>
+        <Button Content="Выгрузить" Margin="480,322,10,220" x:Name="ExBtn"  Cursor="Hand" VerticalAlignment="Stretch" Click="Button_Click_Upload" HorizontalAlignment="Stretch" FontFamily="Arial"/>
 
         <DataGrid x:Name="SessionGrid" Margin="0,211,315,0" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>

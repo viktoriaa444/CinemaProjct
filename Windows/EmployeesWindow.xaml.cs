@@ -1,4 +1,5 @@
 ﻿using CinemaProject.Infrastructure;
+using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Window = System.Windows.Window;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace CinemaProject.Windows
 {
@@ -75,7 +78,7 @@ namespace CinemaProject.Windows
         }
         private void Button_Click_Edit(object sender, RoutedEventArgs e)
         {
-            CardEmployee cardEmployee = new CardEmployee((sender as Button).DataContext as Employee);
+            CardEmployee cardEmployee = new CardEmployee((sender as System.Windows.Controls.Button).DataContext as Employee);
             cardEmployee.Show();
             Close();
         }
@@ -85,6 +88,35 @@ namespace CinemaProject.Windows
             var textBox = Context.GetContext().Employees.ToList();
             textBox = textBox.Where(p => p.Login.ToLower().Contains(TextBox_Search.Text.ToLower())).ToList();
             EmployeeGrid.ItemsSource = textBox.OrderBy(p=>p.Login).ToList();
+        }
+
+        private void Button_Click_Upload(object sender, RoutedEventArgs e)
+        {
+            Excel.Application excel = new Excel.Application();
+            excel.Visible = true;
+            Workbook workbook = excel.Workbooks.Add(System.Reflection.Missing.Value);
+            Worksheet sheet1 = (Worksheet)workbook.Sheets[1];
+
+            for (int j = 0; j < EmployeeGrid.Columns.Count; j++)
+            {
+                Range myRange = (Range)sheet1.Cells[1, j + 1];
+                sheet1.Cells[1, j + 1].Font.Bold = true;
+                sheet1.Columns[j + 1].ColumnWidth = 15;
+                myRange.Value2 = EmployeeGrid.Columns[j].Header;
+            }
+            for (int i = 0; i < EmployeeGrid.Columns.Count; i++)
+            { 
+                for (int j = 0; j < EmployeeGrid.Items.Count; j++)
+                {
+                    TextBlock b = EmployeeGrid.Columns[i].GetCellContent(EmployeeGrid.Items[j]) as TextBlock;
+
+                    if (b == null)
+                        continue;
+
+                    Microsoft.Office.Interop.Excel.Range myRange = (Microsoft.Office.Interop.Excel.Range)sheet1.Cells[j + 2, i + 1];
+                    myRange.Value2 = b.Text;
+                }
+            }
         }
     }
 }

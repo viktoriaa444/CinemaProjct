@@ -28,7 +28,7 @@
         <Button Content="Добавить" Margin="480,456,10,86" Click="Button_Click_Add" FontFamily="Arial" Cursor="Hand"/>
         <Button Content="Обновить" Margin="480,517,5,25"  FontFamily="Arial" Click="Button_Click_Update" Cursor="Hand"/>
         <Button Content="Удалить" Margin="480,391,10,151" Click="Button_Click_Delete" FontFamily="Arial" Cursor="Hand"/>
-        <Button Content="Выгрузить" Margin="480,322,10,220"  FontFamily="Arial" Cursor="Hand"/>
+        <Button Content="Выгрузить" Margin="480,322,10,220" Click="Button_Click_UpLoad" FontFamily="Arial" Cursor="Hand"/>
 
         <DataGrid x:Name="MovieGrid" Margin="0,211,315,0" AutoGenerateColumns="False" IsReadOnly="True">
 

@@ -26,7 +26,7 @@
         <Button Content="Добавить"  Margin="480,456,10,86" Click="Button_Click_Add" FontFamily="Arial"  Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
         <Button Content="Обновить" Click="Button_Click_Update" Margin="480,517,5,25" FontFamily="Arial"  Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
         <Button Content="Удалить" Click="Button_Click_Delete" Margin="480,391,10,151" FontFamily="Arial"  Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-        <Button Content="Выгрузить" Margin="480,322,10,220"  FontFamily="Arial" Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        <Button Content="Выгрузить" Margin="480,322,10,220" Click="Button_Click_Upload" FontFamily="Arial" Cursor="Hand" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
        
 
         <DataGrid x:Name="EmployeeGrid" Margin="0,211,315,0" AutoGenerateColumns="False" IsReadOnly="True">
